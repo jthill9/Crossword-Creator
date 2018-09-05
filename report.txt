@@ -1,0 +1,49 @@
+From the user's perspective, this program can handle three different game modes
+for the crossword. If only the executable is entered in the command line, then
+the user is prompted to enter a list of words, followed by a period, that are
+meant to be put in the crossword. If not all the words can be played, the
+program will notify the user of this. No matter what, the solution to the
+puzzle, the crossword with the words blank, and clues for each word appear on
+the screen. The clues always consist of the coordinate where the word starts,
+with the rows and columns starting at 1, and the direction the word goes. If the
+user enters the executable and a file name into the command line, then the
+program will read the words from that file instead of asking the user for words,
+and will have the same output as before. If two file name are entered after the
+executable, the program will read the words from the first file and send the
+output to the second file. 
+
+This program uses a class called Board. This class has all the variables and
+methods necessary to implement a crossword. The variables are a vector of a
+vector of chars which is the board of the crossword, a vector of strings which
+is the words to be put into the crossword, and a vector of strings of clues that
+are sent in the output to help solve the puzzle. The methods in the Board class
+start off with the default constructor, which initializes every space in the grid
+to '#', and a destructor. The next function allows a user to to set a word into
+the words vector. This method calls the sortWord method, which moves the new
+word back in the array until there are no words in front of it that it is longer
+than. The method loadBoard is the longest method, and calls many of the others.
+At a very generalized level, it first places the first word, then goes through 
+every space in the grid and checks to see if any letter of the next word in the 
+vector of words matches with the letter in the grid. If there is a match, it
+determines the direction the word will be played and whether the word can be
+played. If all the conditions are met for it to be played, there are no letters
+next to or on where it would be and it does not go off the board, then a
+method is called that actually plays the word in the determined space. There are
+two methods that do this, playHorizontal and playVertical. After this method has
+gone through every word or up until a word cannot be played it ends. The program
+is now ready to display the board, with blanks where there are letters, and the
+solution, which has all the words and periods at every other space. The methods
+that display these just use for loops to go through every char on the grid and
+decide what to output based on what it is. The scrambleWords method can also be
+called now, which outputs the clues that were created during loadBoard along
+with all of the words that were used in the puzzle, except scrambled up. The last 
+method I have not talked about yet is the outputToFile method. This method
+combines all the methods that cout anything, and instead of using cout is
+outputs all the information to a file specified by the user in the command line.
+
+I checked to make sure that the crossword worked by testing many inputs from
+both typing in words myself and inputting them from files. I also made sure to
+try outputting to both the screen and to other files. Once I got all these
+pieces working consistently, I knew that I was done. My program does not
+optimize the crossword, as it will stop when one word cannot be placed, but it
+works for the tasks it is meant to fulfill.
